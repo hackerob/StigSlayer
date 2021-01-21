@@ -873,10 +873,9 @@ Function Get-RegChecks {
 		if ($double_reg.Matches.count -gt 1) {
 			Write-Host $reg_STIG.STIG_DATA[0].ATTRIBUTE_DATA "contains multiple reg keys"
 		}
-		#temporary fix for reg key id V-73647
-		elseif ($reg_STIG.STIG_DATA[0].ATTRIBUTE_DATA -eq "V-73647") {write-host "skipped"}
-		elseif ($reg_STIG.STIG_DATA[0].ATTRIBUTE_DATA -eq  "V-63675") {write-host "skipped"}
-		elseif ($reg_STIG.STIG_DATA[0].ATTRIBUTE_DATA -eq  "V-63681") {write-host "skipped"}
+		#temporary fix for two legal text registry keys
+        	elseif ($reg_STIG.STIG_DATA[8].ATTRIBUTE_DATA -Match "LegalNoticeCaption") {write-host "skipped $($reg_STIG.STIG_DATA[0].ATTRIBUTE_DATA)"}
+        	elseif ($reg_STIG.STIG_DATA[8].ATTRIBUTE_DATA -Match "LegalNoticeText") {write-host "skipped $($reg_STIG.STIG_DATA[0].ATTRIBUTE_DATA)"}
 
 		else {
 			try {
